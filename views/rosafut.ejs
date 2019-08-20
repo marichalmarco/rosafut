@@ -1,0 +1,55 @@
+
+<% include ./header %>
+
+
+
+
+<div class="container">
+
+    <header class="jumbotron">
+        <h1 class="text-center">ROSAFUT </h1>
+        <img src="https://ae01.alicdn.com/kf/HTB1x5Phob1YBuNjSszhq6AUsFXav/Hot-Euro-cup-Fantasy-Football-Costume-soccer-baby-football-girl-sexy-shorts-cheerleaders-team-sets-sports.jpg_640x640.jpg" class="center-block" width="300" height="300"/> 
+        
+    </header>
+     
+    <table 
+           data-toggle="table" 
+           data-search = "true" 
+           data-show-columns="true"
+           data-striped="true"
+           data-sort-name="Player's Name"
+           data-side-pagination = 'client'
+           data-pagination="true"
+           data-page-list = "[10, 25, 50, 100, All]"
+          > 
+    <thead>
+        <tr >
+            <th data-align="center">Player</th>
+            <th data-align="center">Games</th>
+            <th data-align="center">Wins</th>
+            <th data-align="center">Loses</th>
+            <th data-align="center">Draws</th>
+            <th data-align="center">Last Win</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <% players.forEach(function(player) {%>
+        <tr >
+            <td><a href="/<%=player._id%>"><%=player.name%></a> </td>
+            <td><%=player.games%> </td>
+            <td><%=player.wins%> </td>
+            <td><%=player.loses%> </td>
+            <td><%=player.draws%> </td>
+            <td><%=player.last_win.toDateString() %> </td>
+           
+        <% }); %>
+    </tbody>
+   </table>
+
+</div>
+
+
+<% include ./footer %>
+

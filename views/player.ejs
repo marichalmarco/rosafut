@@ -1,0 +1,21 @@
+
+<% include ./header %>
+
+<div class="container">
+<div class="jumbotron">
+  <h1 class="display-4"><%=player.name%></h1>
+  <p class="lead">Games : <%=player.games%></p>
+  <p class="lead">Wins : <%=player.wins%></p>
+  <p class="lead">Loses : <%=player.loses%></p>
+  <p class="lead">Draws : <%=player.draws%></p>
+  <hr class="my-4">
+  <p>Win Rate: <%=((player.wins/player.games)*100)%>%</p>
+  <p>Loss Rate: <%=((player.loses/player.games)*100)%>%</p>
+  <p>Draw Rate: <%=((player.draws/player.games)*100)%>%</p>
+  <p class="lead">
+    
+  </p>
+</div>
+</div>
+
+<% include ./footer %>

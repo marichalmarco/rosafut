@@ -1,0 +1,82 @@
+<% include ./header %>
+
+
+<div class="container">
+
+     <a href="/new"><i class="fas fa-user-plus" style="font-size:36px; color:green;"></i></a>
+     
+    <table 
+           data-toggle="table" 
+           data-search = "true" 
+           data-show-columns="true"
+           data-striped="true"
+           data-sort-name="Player's Name"
+           data-side-pagination = 'client'
+           data-pagination="true"
+           data-page-list = "[10, 25, 50, 100, All]"
+          > 
+    <thead>
+        <tr >
+            <th data-align="center">Player</th>
+            <th data-align="center">Games</th>
+            <th data-align="center">Wins</th>
+            <th data-align="center">Loses</th>
+            <th data-align="center">Draws</th>
+            <th data-align="center">Last Win</th>
+            <th data-align="center">Wins(mgt)</th>
+            <th data-align="center">Loses(mgt)</th>
+            <th data-align="center">Draws(mgt)</th>
+            <th data-align="center">Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% players.forEach(function(player) {%>
+        <tr >
+            <td><%=player.name%> </td>
+            <td><%=player.games%> </td>
+            <td><%=player.wins%> </td>
+            <td><%=player.loses%> </td>
+            <td><%=player.draws%> </td>
+            <td><%=player.last_win.toDateString() %> </td>
+            <td>
+            
+            <a href="/<%=player._id%>/addwin"><i class="fas fa-plus-circle" style="font-size:36px;"></i> </a> 
+                <br/> 
+                <br/>  
+            <a href="/<%=player._id%>/removewin"><i class="fas fa-minus-circle" style="font-size:36px; color:red;"></i></a> 
+            </td>
+            
+            <td>
+            <a href="/<%=player._id%>/addlost"><i class="fas fa-plus-circle" style="font-size:36px;"></i></a> 
+                <br/> 
+                <br/>  
+            <a href="/<%=player._id%>/removelost"><i class="fas fa-minus-circle" style="font-size:36px; color:red;"></i></a> 
+            </td>
+
+                        <td>
+            <a href="/<%=player._id%>/adddraw"><i class="fas fa-plus-circle" style="font-size:36px;"></i></a> 
+                <br/> 
+                <br/>  
+            <a href="/<%=player._id%>/removedraw"><i class="fas fa-minus-circle" style="font-size:36px; color:red;"></i></a> 
+            </td>
+               
+            <td>
+                <a style= "width:80px; font-size:15px;" class="btn btn-primary" href="/<%=player._id%>/edit"><i class="fas fa-user-edit"></i></a> 
+                <br/> 
+                <br/>  
+                <form class="delete-form" action="/<%=player._id%>?_method=DELETE" method = "POST">
+                         <button style= "width:80px; font-size:15px;" class="btn btn-danger"> <i class="fas fa-user-minus"></i> </button>
+                </form>
+            </td>
+        </tr>
+        
+        <% }); %>
+    </tbody>
+   </table>
+
+</div>
+
+
+<% include ./footer %>
+
