@@ -24,6 +24,7 @@ mongoose.connect("mongodb+srv://mmarichal:tufsaro2025@clusterdev.ynvq74n.mongodb
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.set('views', path.join(__dirname, 'views'));
 // app.use(express.static("public"));
 // app.use("/public", express.static(path.join(__dirname, 'public')));
 
@@ -336,7 +337,10 @@ app.get("/leaderboard", async (req, res) => {
 
 
 // Start server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Rosafut running on http://localhost:${port}`);
-});
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => {
+//   console.log(`Rosafut running on http://localhost:${port}`);
+// });
+
+
+module.exports = app;
