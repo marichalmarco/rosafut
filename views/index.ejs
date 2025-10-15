@@ -1,82 +1,59 @@
 <% include ./header %>
 
-
 <div class="container">
 
-     <a href="/new"><i class="fas fa-user-plus" style="font-size:36px; color:green;"></i></a>
-     
+  <header class="jumbotron text-center">
+    <h1 class="display-4">Jugadores</h1>
+    <p class="lead">Crear, editar y remover jugadores del grupo.</p>
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <a href="/new" class="btn btn-success btn-lg">
+        <i class="fas fa-user-plus"></i> <b>Agregar Jugador</b>
+      </a>
+      <a href="/rosafut" class="btn btn-primary btn-lg">
+        <i class="fas fa-home"></i> <b>INICIO</b>
+      </a>
+    </div>
+  </header>
+
+  <div class="card shadow-lg rounded-3 p-4">
     <table 
-           data-toggle="table" 
-           data-search = "true" 
-           data-show-columns="true"
-           data-striped="true"
-           data-sort-name="Player's Name"
-           data-side-pagination = 'client'
-           data-pagination="true"
-           data-page-list = "[10, 25, 50, 100, All]"
-          > 
-    <thead>
-        <tr >
-            <th data-align="center">Player</th>
-            <th data-align="center">Games</th>
-            <th data-align="center">Wins</th>
-            <th data-align="center">Loses</th>
-            <th data-align="center">Draws</th>
-            <th data-align="center">Last Win</th>
-            <th data-align="center">Wins(mgt)</th>
-            <th data-align="center">Loses(mgt)</th>
-            <th data-align="center">Draws(mgt)</th>
-            <th data-align="center">Actions</th>
-
+      class="table table-hover table-striped align-middle text-center"
+      data-toggle="table"
+      data-search="true"
+      data-show-columns="false"
+      data-side-pagination="client"
+      data-pagination="true"
+      data-page-list="[10, 25, 50, 100, All]"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th data-align="center">Player</th>
+          <th data-align="center">Edit</th>
+          <th data-align="center">Delete</th>
         </tr>
-    </thead>
-    <tbody>
-        <% players.forEach(function(player) {%>
-        <tr >
-            <td><%=player.name%> </td>
-            <td><%=player.games%> </td>
-            <td><%=player.wins%> </td>
-            <td><%=player.loses%> </td>
-            <td><%=player.draws%> </td>
-            <td><%=player.last_win.toDateString() %> </td>
+      </thead>
+      <tbody>
+        <% players.forEach(function(player) { %>
+          <tr>
+            <td><%= player.name %></td>
             <td>
-            
-            <a href="/<%=player._id%>/addwin"><i class="fas fa-plus-circle" style="font-size:36px;"></i> </a> 
-                <br/> 
-                <br/>  
-            <a href="/<%=player._id%>/removewin"><i class="fas fa-minus-circle" style="font-size:36px; color:red;"></i></a> 
+              <a class="btn btn-primary btn-sm w-100" href="/<%= player._id %>/edit">
+                <i class="fas fa-user-edit"></i> Edit
+              </a>
             </td>
-            
             <td>
-            <a href="/<%=player._id%>/addlost"><i class="fas fa-plus-circle" style="font-size:36px;"></i></a> 
-                <br/> 
-                <br/>  
-            <a href="/<%=player._id%>/removelost"><i class="fas fa-minus-circle" style="font-size:36px; color:red;"></i></a> 
+              <form class="delete-form" action="/<%= player._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger btn-sm w-100">
+                  <i class="fas fa-user-minus"></i> Delete
+                </button>
+              </form>
             </td>
-
-                        <td>
-            <a href="/<%=player._id%>/adddraw"><i class="fas fa-plus-circle" style="font-size:36px;"></i></a> 
-                <br/> 
-                <br/>  
-            <a href="/<%=player._id%>/removedraw"><i class="fas fa-minus-circle" style="font-size:36px; color:red;"></i></a> 
-            </td>
-               
-            <td>
-                <a style= "width:80px; font-size:15px;" class="btn btn-primary" href="/<%=player._id%>/edit"><i class="fas fa-user-edit"></i></a> 
-                <br/> 
-                <br/>  
-                <form class="delete-form" action="/<%=player._id%>?_method=DELETE" method = "POST">
-                         <button style= "width:80px; font-size:15px;" class="btn btn-danger"> <i class="fas fa-user-minus"></i> </button>
-                </form>
-            </td>
-        </tr>
-        
+          </tr>
         <% }); %>
-    </tbody>
-   </table>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
-
 <% include ./footer %>
-

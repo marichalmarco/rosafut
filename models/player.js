@@ -1,16 +1,13 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-// SCHEMA DEFINITION
+const playerSchema = new mongoose.Schema({
+  name: String,
+  games: Number,
+  wins: Number,
+  loses: Number,
+  draws: Number,
+  last_win: Date
+});
 
-var playerSchema = new mongoose.Schema({
-
-    name: String,
-    games: Number,
-    wins: Number,
-    loses: Number,
-    draws: Number,
-    last_win: Date
-
-})
-
-module.exports = mongoose.model("Player",playerSchema)
+const Player = mongoose.model("Player", playerSchema);
+export default Player;
