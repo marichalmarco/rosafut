@@ -37,12 +37,17 @@ app.get("/rosafut",  (req, res) => {
 
 });
 
+// app.get("/", (req, res) => {
+  
+//     res.render("home");
+
+// });
+
 app.get("/", (req, res) => {
   
-    res.render("home");
+    res.send("Hi");
 
 });
-
 
 // Games list
 app.get("/games", async (req, res) => {
@@ -337,10 +342,10 @@ app.get("/leaderboard", async (req, res) => {
 
 
 // Start server
-// const port = process.env.PORT || 3000;
-// app.listen(port, () => {
-//   console.log(`Rosafut running on http://localhost:${port}`);
-// });
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Rosafut running on http://localhost:${port}`);
+});
 
 
-module.exports = app;
+//module.exports = app;
